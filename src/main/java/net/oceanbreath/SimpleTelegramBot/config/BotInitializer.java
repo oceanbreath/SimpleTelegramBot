@@ -1,5 +1,6 @@
 package net.oceanbreath.SimpleTelegramBot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import net.oceanbreath.SimpleTelegramBot.service.TelegramBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+@Slf4j
 @Component
 public class BotInitializer {
 
@@ -22,7 +24,7 @@ public class BotInitializer {
         try {
             telegramBotsApi.registerBot(bot);
         } catch (TelegramApiException e) {
-            //
+            log.error("Error occurred: " + e.getMessage());
         }
     }
 }
